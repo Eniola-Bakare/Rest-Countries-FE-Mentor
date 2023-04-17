@@ -1,0 +1,207 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+:root{
+  
+--dark-blue-Dark-Mode-Elements: hsl(209, 23%, 22%);
+--very-dark-blue-Dark-Mode-Background: hsl(207, 26%, 17%);
+--very-dark-Blue-Light-Mode-Text: hsl(200, 15%, 8%);
+--dark-gray-Light-Mode-Input: hsl(0, 0%, 52%);
+--very-light-gray-Light-Mode-Background: hsl(0, 0%, 98%);
+--white-Dark-Mode-Text--Light-Mode-Elements: hsl(0, 0%, 100%);
+}
+
+
+body{
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--very-dark-blue-Dark-Mode-Background);
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+ 
+}
+
+
+.header,
+.search-container,
+.country-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.header{
+    padding: 20px 90px;
+    background-color: var(--dark-blue-Dark-Mode-Elements);
+    box-shadow:  -1px 1px 1px 04px var(--dark-blue-Dark-Mode-Elements);
+}
+.theme-icon{
+  font-size: 14px;
+}
+.fa-solid{
+  margin-right: 3px;
+}
+
+.search-container{
+  padding: 60px 90px 0px;
+}
+
+.search-bar{
+  width: 45%;
+  background-color: var(--dark-blue-Dark-Mode-Elements);
+  padding: 15px 30px;
+  border-radius: 4px;
+}
+
+.search-bar input{
+  height: 100%;
+  margin-left: 10px;
+  width: 90%;
+  background-color: var(--dark-blue-Dark-Mode-Elements);
+  border: none;
+}
+.search-bar input:placeholder-shown{
+  font-weight: 600;
+  font-size: 16px;
+}
+.search-bar ::placeholder{
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+}
+#region-filter{
+  width: 15%;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+  background-color: var(--dark-blue-Dark-Mode-Elements);
+  border:none;
+  padding: 15px 20px;
+  border-radius:5px;
+  font-weight: 600;
+}
+#region-filter{
+  border: none;
+  outline: none;
+}
+
+.all-countries-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 60px 90px 0px;
+  gap: 15px;
+}
+
+.country-card{
+  border-radius: 8px;
+  background-color: var(--dark-blue-Dark-Mode-Elements);
+}
+.country-card img{
+  width: 100%;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.country-info{
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 0;
+  /* background-color: var(--dark-blue-Dark-Mode-Elements); */
+  padding: 20px 25px 25px;
+
+}
+.country-name{
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.country-info p{
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: .9;
+  padding-bottom: 8px;
+  opacity: .9;
+}
+span.info-item{
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+  font-weight: 600;
+}
+
+
+.back-btn{
+  align-self: flex-start;
+  padding: 60px 90px 0px;
+}
+.back-btn button{
+  padding: 12px 45px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  background-color: var(--dark-blue-Dark-Mode-Elements);
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+  box-shadow:  -1px 1px 1px 04px var(--dark-blue-Dark-Mode-Elements);
+}
+.country-details{
+  padding: 60px 90px 0px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.country-details img,
+.details{
+  width: 45%;
+}
+
+.extra-details{
+  display: flex;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
+  gap: 10%;
+  
+
+  margin: 25px 0;
+}
+.detail-item{
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: .9;
+  padding-bottom: 8px;
+  opacity: .9;
+}
+span.detail-type{
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+  font-weight: 600;
+}
+
+.border-countries{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.border-countries-para{
+  font-weight: 600;
+}
+.border-countries-btn{
+  padding: 3px 6px;
+  font-weight: 600;
+  border: none;
+  background-color: var(--dark-blue-Dark-Mode-Elements);
+  color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+  box-shadow:  -1px 1px 1px 04px var(--dark-blue-Dark-Mode-Elements);
+}
+
+/* button.light-mode,
+header.light-mode,
+.light-mode{
+  background-color: var(--very-light-gray-Light-Mode-Background);
+  color: var(--very-dark-Blue-Light-Mode-Text);
+} */
