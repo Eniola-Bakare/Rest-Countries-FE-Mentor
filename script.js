@@ -5,18 +5,39 @@ import dataJSON from './data.json' assert {type: 'json'};
 const themeIcon = document.querySelector('.theme-icon')
 const body = document.querySelector('body');
 const allCountryWrapper = document.querySelector('.all-countries-wrapper')
+const searchContainer = document.querySelector('.search-container')
+const searchBar = document.querySelector('.search-bar')
 const searchBarInput = document.querySelector('.search-input')
 const selectedFilterVal = document.querySelector('#region-filter')
-
-
+const backBTN = document.querySelector('.back-btn')
 
 let filteredArr = []
 let countryTextInput = ''
 let region = ''
 let regionArr = []
 let regionArrfilter = []
+let themeState = false
+
+const styleFuncHide = function(elem){
+  elem.style.display = 'none'
+  elem.style.visibility = 'hidden'
+}
+const styleFuncShow = function(elem){
+  elem.style.display = 'flex'
+  elem.style.visibility = 'visible'
+}
 
 const updateUI = function(data){
+  styleFuncHide(backBTN)
+
+  styleFuncShow(allCountryWrapper)
+
+  styleFuncShow(searchContainer)
+
+  if (document.querySelector('.country-details')) {
+    document.querySelector('.country-details').textContent = ''
+  }
+
   allCountryWrapper.innerHTML =''
   data.map(eachCountry => {
     return allCountryWrapper.insertAdjacentHTML('beforeend', `
@@ -35,23 +56,20 @@ const updateUI = function(data){
 
     document.querySelectorAll('.country-card > *').forEach(eachCountryCard => {
     return eachCountryCard.addEventListener('click', function(){
+      styleFuncShow(backBTN)
+
+     styleFuncHide(allCountryWrapper)
+
+      styleFuncHide(searchContainer)
+
         const countryName = eachCountryCard.childNodes[1].textContent
         const matchingCountry = dataJSON.filter(eachCountry => {
           // console.log(eachCountry.name.toLowerCase() === countryName.toLowerCase())
           return eachCountry.name.toLowerCase() === countryName.toLowerCase()
         })
         for (const country of matchingCountry) {
-          body.innerHTML = '';
+          allCountryWrapper.innerHTML =''
           body.insertAdjacentHTML('beforeend', `
-          <header class="header">
-            <h1 class="header-title">Where in the world?</h1>
-            <p class="theme-icon"><i class="fa-sharp fa-solid fa-moon"></i> Dark Mode</p>
-          </header>
-          <section class="back-btn">
-            <button>
-              <i class="fa-sharp fa-solid fa-arrow-left"></i> Back
-            </button>
-          </section>
   
           <section class="country-details">
             <!--<img src=${country.flags.png} alt= ${country.name +'s' + ' flag'} >-->
@@ -105,9 +123,7 @@ const updateUI = function(data){
           `)
           // backbtn
         }
-        const backBtn = document.querySelector('.back-btn')
-        console.log(backBtn)
-        backBtn.addEventListener('click', updateUI(dataJSON))
+        backBTN.addEventListener('click', function(){updateUI(dataJSON)})
     })
   })
 }
@@ -124,7 +140,6 @@ const forCountry = function(dataArr){
     eachCountry.name.toLowerCase().includes(countryTextInput.toLowerCase())
 })
 }
-
 
 //
 const filterByCountryNameFunc = function(){
@@ -170,4 +185,40 @@ selectedFilterVal.addEventListener('change', function(){
 
   // allCountryWrapper.innerHTML = ''
   return updateUI(regionArr)
+})
+
+const themeFuncElem = function(colorElems, forBody, colorText){
+  const header = document.querySelector('.header');
+  const searchIcon = document.querySelector('.fa-solid')
+  const searchInputPlaceHolder = document.querySelector('.search-input')
+
+  // texts
+      body.style.color = 
+      // header.style.backgroundColor =
+      selectedFilterVal.style.color = 
+      searchBar.style.color = 
+      colorText;
+  // elems
+      body.style.backgroundColor = forBody;
+      header.style.backgroundColor =
+      selectedFilterVal.style.backgroundColor = 
+      searchBar.style.backgroundColor = 
+        colorElems
+   
+      document.querySelectorAll('.all-countries-wrapper > .country-card').forEach(country => {
+        country.style.backgroundColor = colorElems
+      })
+}
+
+themeIcon.addEventListener('click', function(){
+  if(!themeState){
+    // for elems
+    themeFuncElem('var(----white-Dark-Mode-Text--Light-Mode-Elements)', 'var(--very-light-gray-Light-Mode-Background', 'var(--very-dark-Blue-Light-Mode-Text)')
+     themeState = !themeState
+
+    }else if (themeState) {
+      // for elems
+        themeFuncElem('var(--dark-blue-Dark-Mode-Elements)', 'var(--very-dark-blue-Dark-Mode-Background)', 'var(--white-Dark-Mode-Text--Light-Mode-Elements)') 
+        themeState = !themeState
+    }
 })
