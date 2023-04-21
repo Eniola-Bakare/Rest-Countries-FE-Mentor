@@ -83,7 +83,7 @@ const updateUI = function(data){
     return allCountryWrapper.insertAdjacentHTML('beforeend', `
     <section class="country-card">
       
-
+    <img loading="lazy" src= ${eachCountry.flags.png} alt="${eachCountry.name} flag image">
       <div class="country-info">
         <h4 class="country-name">${eachCountry.name}</h4>
         <p class="country-population"><span class="info-item">Population: </span>${eachCountry.population}</p>
