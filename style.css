@@ -47,6 +47,7 @@ body{
 .theme-icon{
   font-size: 14px;
   letter-spacing: .5x;
+  cursor: pointer;
 }
 .fa-solid{
   margin-right: 3px;
@@ -98,14 +99,21 @@ body{
   background-color: var(--dark-blue-Dark-Mode-Elements);
   box-shadow: 3px 8px 44px -16px rgba(0,0,0,0.25);
   border:none;
+  cursor: pointer;
   padding: 15px 20px;
   border-radius:5px;
   font-weight: 600;
-}
-#region-filter{
   border: none;
   outline: none;
+  position: relative;
 }
+/* #region-filter option{
+  color: pink;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 1000px;
+} */
 
 .all-countries-wrapper{
   display: flex;
@@ -120,13 +128,15 @@ body{
   border-radius: 8px;
   background-color: var(--dark-blue-Dark-Mode-Elements);
   width: 290px ;
-    box-shadow: 3px 8px 44px -16px rgba(0,0,0,0.25);
+  box-shadow: 3px 8px 44px -16px rgba(0,0,0,0.25);
+  cursor: pointer;
 }
 .country-card img{
   height: 50%;
   width:100%;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
+  /* pointer-events: none; */
 }
 .country-info{
   flex-direction: column;
@@ -165,6 +175,7 @@ span.info-item{
   border: none;
   background-color: var(--dark-blue-Dark-Mode-Elements);
   color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
+  cursor: pointer;
   box-shadow: 3px 8px 44px -16px rgba(0,0,0,0.25);
 }
 .country-details{
@@ -205,18 +216,21 @@ span.detail-type{
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .border-countries-para{
   font-weight: 600;
 }
 .border-countries-btn{
-  padding: 3px 6px;
+  padding: 6px 20px;
   font-weight: 600;
   border: none;
+  border-radius: 2px;
   background-color: var(--dark-blue-Dark-Mode-Elements);
   color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
-  box-shadow: 3px 5px 35px -8px rgba(0,0,0,1);
+  cursor: pointer;
+  box-shadow: 3px 5px 35px -8px rgba(0,0,0,.35);
 }
 
 @media only screen and (max-width: 1047px){
@@ -229,6 +243,17 @@ span.detail-type{
     min-width: 772px;
   }
   .country-card{
+    width: 100%;
+  }
+  .country-details{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .country-details img{
+    margin-bottom: 20px;
+    width: 50%;
+  }
+  .details{
     width: 100%;
   }
   .search-bar input{
