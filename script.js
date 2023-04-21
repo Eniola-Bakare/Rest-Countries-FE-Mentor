@@ -16,7 +16,46 @@ let countryTextInput = ''
 let region = ''
 let regionArr = []
 let regionArrfilter = []
-let themeState = false
+let themeState = false;
+
+const themeFuncElem = function(colorElems, forBody, colorText){
+  const header = document.querySelector('.header');
+  const searchIcon = document.querySelector('.fa-solid')
+  const searchInputPlaceHolder = document.querySelector('.search-input')
+  const infoType = document.querySelectorAll('.info-item')
+  const backBtn = document.querySelector('.back-btn > button')
+  // const borderCountries = 
+ 
+
+  // texts
+      body.style.color = 
+      backBtn.style.color =
+      selectedFilterVal.style.color = 
+      searchBar.style.color = 
+      colorText;
+      infoType.forEach(each => {
+        each.style.color = colorText
+      })
+      document.querySelectorAll('.border-countries-btn').forEach(each => {
+        each.style.color = colorText;
+        each.style.backgroundColor = colorElems;
+      })
+      document.querySelectorAll('.detail-type').forEach(each => {
+        each.style.color = colorText;
+      })
+  // elems
+      body.style.backgroundColor = forBody;
+      backBtn.style.backgroundColor =
+      header.style.backgroundColor =
+      selectedFilterVal.style.backgroundColor = 
+      searchBar.style.backgroundColor = 
+        colorElems
+   
+      document.querySelectorAll('.all-countries-wrapper > .country-card').forEach(country => {
+        country.style.backgroundColor = colorElems
+      })
+}
+
 
 const styleFuncHide = function(elem){
   elem.style.display = 'none'
@@ -35,7 +74,8 @@ const updateUI = function(data){
   styleFuncShow(searchContainer)
 
   if (document.querySelector('.country-details')) {
-    document.querySelector('.country-details').textContent = ''
+    console.log('country details here____')
+    document.querySelector('.country-details').remove()
   }
 
   allCountryWrapper.innerHTML =''
@@ -53,7 +93,7 @@ const updateUI = function(data){
     </section>
     `)
   })
-
+ 
     document.querySelectorAll('.country-card > *').forEach(eachCountryCard => {
     return eachCountryCard.addEventListener('click', function(){
       styleFuncShow(backBTN)
@@ -100,7 +140,7 @@ const updateUI = function(data){
                     <span class="detail-type">Top Level Domain: </span> ${country.topLevelDomain}
                   </p>
                   <p class="detail-item">
-                    <span class="detail-type">Currencies: </span> ${country.currencies[0].code}
+                    <span class="detail-type">Currencies: </span> ${country.currencies?.map(each => {each.code})}
                   </p>
                   <p class="detail-item">
                     <span class="detail-type">Languages: </span> ${country.languages.map(lang => lang.name).join(', ')}
@@ -123,9 +163,41 @@ const updateUI = function(data){
           `)
           // backbtn
         }
+        if(!themeState){
+          document.querySelectorAll('.border-countries-btn').forEach(each => {
+            each.style.color = 'var(--white-Dark-Mode-Text--Light-Mode-Elements)';
+            each.style.backgroundColor =  'var(--very-dark-Blue-Light-Mode-Text)';
+           
+          })
+          document.querySelectorAll('.detail-type').forEach(each => {
+            each.style.color = 'var(--white-Dark-Mode-Text--Light-Mode-Elements)';
+          })
+        }else if(themeState){
+          document.querySelectorAll('.border-countries-btn').forEach(each => {
+            each.style.color = 'var(--very-dark-Blue-Light-Mode-Text)';
+            each.style.backgroundColor =  'var(--white-Dark-Mode-Text--Light-Mode-Elements)';
+          })
+          document.querySelectorAll('.detail-type').forEach(each => {
+            each.style.color = 'var(--very-dark-Blue-Light-Mode-Text)';
+          })
+        }
+
         backBTN.addEventListener('click', function(){updateUI(dataJSON)})
     })
   })
+   if(!themeState){
+    const header = document.querySelector('.header');
+    const searchIcon = document.querySelector('.fa-solid')
+    const searchInputPlaceHolder = document.querySelector('.search-input')
+    const infoType = document.querySelectorAll('.info-item')
+    const borderCountries = document.querySelectorAll('.broder-countries-btn')
+    searchBar;
+    selectedFilterVal;
+    body;
+    themeFuncElem('var(--dark-blue-Dark-Mode-Elements)', 'var(--very-dark-blue-Dark-Mode-Background)', 'var(--white-Dark-Mode-Text--Light-Mode-Elements)') 
+  }else if(themeState){
+    themeFuncElem('var(--white-Dark-Mode-Text--Light-Mode-Elements)', 'var(--very-light-gray-Light-Mode-Background', 'var(--very-dark-Blue-Light-Mode-Text)')
+  }
 }
 
 updateUI(dataJSON)
@@ -146,10 +218,8 @@ const filterByCountryNameFunc = function(){
   countryTextInput = searchBarInput.value
 
   if(searchBarInput.value === '' && region || searchBarInput.value === '' && !region){
-    console.log('empty')
     region = ''
     selectedFilterVal.value = 'Filter by Region'
-    console.log(filteredArr)
     return updateUI(dataJSON)
   }else if(region){
     searchBarInput.textContent = ''
@@ -187,37 +257,28 @@ selectedFilterVal.addEventListener('change', function(){
   return updateUI(regionArr)
 })
 
-const themeFuncElem = function(colorElems, forBody, colorText){
-  const header = document.querySelector('.header');
-  const searchIcon = document.querySelector('.fa-solid')
-  const searchInputPlaceHolder = document.querySelector('.search-input')
-
-  // texts
-      body.style.color = 
-      // header.style.backgroundColor =
-      selectedFilterVal.style.color = 
-      searchBar.style.color = 
-      colorText;
-  // elems
-      body.style.backgroundColor = forBody;
-      header.style.backgroundColor =
-      selectedFilterVal.style.backgroundColor = 
-      searchBar.style.backgroundColor = 
-        colorElems
-   
-      document.querySelectorAll('.all-countries-wrapper > .country-card').forEach(country => {
-        country.style.backgroundColor = colorElems
-      })
-}
-
 themeIcon.addEventListener('click', function(){
   if(!themeState){
+    console.log(themeState)
     // for elems
-    themeFuncElem('var(----white-Dark-Mode-Text--Light-Mode-Elements)', 'var(--very-light-gray-Light-Mode-Background', 'var(--very-dark-Blue-Light-Mode-Text)')
+    searchBar.classList.add('active')
+    // document.querySelectorAll('.border-countries-btn').forEach(each => {
+    //   console.log('not here')
+    //   each.style.color = 'var(--dark-blue-Dark-Mode-Elements)';
+    //   each.style.backgroundColor =  'var(--white-Dark-Mode-Text--Light-Mode-Elements)';
+    // })
+    themeFuncElem('var(--white-Dark-Mode-Text--Light-Mode-Elements)', 'var(--very-light-gray-Light-Mode-Background', 'var(--very-dark-Blue-Light-Mode-Text)')
      themeState = !themeState
 
     }else if (themeState) {
+      console.log(themeState)
       // for elems
+        searchBar.classList.remove('active')
+        // document.querySelectorAll('.border-countries-btn').forEach(each => {
+        //   console.log('here')
+        //   each.style.color = 'var(--white-Dark-Mode-Text--Light-Mode-Elements)';
+        //   each.style.backgroundColor =  'var(--very-dark-Blue-Light-Mode-Text)';
+        // })
         themeFuncElem('var(--dark-blue-Dark-Mode-Elements)', 'var(--very-dark-blue-Dark-Mode-Background)', 'var(--white-Dark-Mode-Text--Light-Mode-Elements)') 
         themeState = !themeState
     }
