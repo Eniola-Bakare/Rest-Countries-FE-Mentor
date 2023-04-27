@@ -58,18 +58,16 @@ body{
 }
 
 .search-bar{
-  width: 45%;
+  width: fit-content;
   background-color: var(--dark-blue-Dark-Mode-Elements);
-  padding: 15px 30px;
+  padding: 15px 20px;
   border-radius: 4px;
-
+  
   box-shadow: 3px 8px 44px -16px rgba(0,0,0,0.2);
 }
-
 .search-bar input{
   height: 100%;
   margin-left: 10px;
-  width: 90%;
   background-color: transparent;
   color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
   border: none;
@@ -80,7 +78,8 @@ body{
 }
 .search-bar input:placeholder-shown{
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
+  letter-spacing: .5px;
 }
 .search-bar ::placeholder{
   color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
@@ -91,10 +90,10 @@ body{
   color: var(--dark-gray-Light-Mode-Input);
 }
 #region-filter{
-  width: 15%;
+  width: fit-content;
   border-radius: 4px;
-  font-size: 16px;
-  font-weight: bolder;
+  font-size: 14px;
+  letter-spacing: .5px;
   color: var(--white-Dark-Mode-Text--Light-Mode-Elements);
   background-color: var(--dark-blue-Dark-Mode-Elements);
   box-shadow: 3px 8px 44px -16px rgba(0,0,0,0.25);
@@ -107,13 +106,6 @@ body{
   outline: none;
   position: relative;
 }
-/* #region-filter option{
-  color: pink;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 1000px;
-} */
 
 .all-countries-wrapper{
   display: flex;
@@ -239,9 +231,6 @@ span.detail-type{
   }
 }
 @media only screen and (max-width: 785px){
-  body{
-    min-width: 772px;
-  }
   .country-card{
     width: 100%;
   }
@@ -256,16 +245,47 @@ span.detail-type{
   .details{
     width: 100%;
   }
-  .search-bar input{
-    width: 60%;
-  }
   .search-container,
   .all-countries-wrapper{
     padding: 60px 70px 0px;
   }
-  /* .country-card{
-    width: 310px;
-  } */
+}
+
+@media only screen and (max-width: 678px){
+  .header-title{
+    font-size: 28px;
+  }
+  .header{
+    padding: 20px 70px;
+  }
+}
+@media only screen and (max-width: 588px){
+  .header{
+    padding: 20px 35px;
+  }
+  .header-title{
+    font-size: 24px;
+  }
+  .search-container{
+    padding: 60px 35px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    /* width: 50%; */
+  }
+  .search-bar{
+    padding: 15px 20px;
+  }
+ 
+  .all-countries-wrapper{
+    padding: 60px 35px 0px;
+  }
+}
+@media only screen and (max-width: 452px){
+  .search-container{
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+  }
 }
 
 @media only screen and (max-width: 480px){
@@ -276,5 +296,14 @@ span.detail-type{
   }
   .country-card{
     min-width: 90%;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  body{
+    min-width: 375px;
+  }
+  .header-title{
+    font-size: 20px;
   }
 }
